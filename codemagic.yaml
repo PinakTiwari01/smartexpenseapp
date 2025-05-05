@@ -3,18 +3,19 @@ workflows:
     name: Expo Android Build
     environment:
       vars:
-        EXPO_TOKEN: $EXPO_TOKEN
+        EXPO_TOKEN: 7xV120ZpQsOnPJd6ST1MnZCDcJSaLAxqn5Ux3T6t
     scripts:
       - name: Install dependencies
         script: |
           npm install
-      - name: Build Android app with Expo
+      - name: Install EAS CLI
         script: |
-          npx expo install
-          npx expo export --platform android
-          npx eas-cli build --platform android --non-interactive --profile preview
+          npm install -g eas-cli
+      - name: Build APK with Expo EAS
+        script: |
+          eas build --platform android --non-interactive --profile preview
     artifacts:
-      - build/**/*.apk
+      - build/**/*
     publishing:
       email:
         recipients:
