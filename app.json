@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a2959500-c031-4997-9b10-e43e6cdd7ea5"
+      }
+    },
+    "owner": "pinak44"
   }
 }
