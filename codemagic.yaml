@@ -1,19 +1,21 @@
 workflows:
-  react-native-workflow:
-    name: React Native APK Build
-    max_build_duration: 60
+  expo-workflow:
+    name: Expo Android Build
     environment:
       vars:
-        NODE_VERSION: 16.20.0
-      flutter: stable
-      xcode: latest
+        EXPO_TOKEN: $EXPO_TOKEN
     scripts:
       - name: Install dependencies
         script: |
           npm install
-      - name: Build APK
+      - name: Build Android app with Expo
         script: |
-          cd android
-          ./gradlew assembleRelease
+          npx expo install
+          npx expo export --platform android
+          npx eas-cli build --platform android --non-interactive --profile preview
     artifacts:
-      - android/app/build/outputs/**/*.apk
+      - build/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - pinakofficial44@gmail.com
